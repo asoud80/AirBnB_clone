@@ -1,22 +1,28 @@
 #!/usr/bin/python3
+"""Engine Module"""
+
 import json
 import os
 
 
 class FileStorage():
+    """file storage class"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
+        """return objects"""
         return (FileStorage.__objects)
 
     def new(self, obj):
+        """set key"""
         newname = obj.__class__.__name__
         newid = obj.id
         newkey = newname + "." + newid
         FileStorage.__objects[newkey] = obj
 
     def save(self):
+        """serialize"""
         instdic = {}
         for key in FileStorage.__objects:
             instdic[key] = FileStorage.__objects[key].to_dict()
@@ -24,6 +30,7 @@ class FileStorage():
             json.dump(instdic, fp)
 
     def reload(self):
+        """deserialize"""
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State

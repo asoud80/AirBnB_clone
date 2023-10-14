@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Console module"""
 
 import cmd
 import re
@@ -16,6 +17,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """Command interpreter class"""
     prompt = '(hbnb) '
     __classes = [
         "Amenity",
@@ -179,6 +181,7 @@ class HBNBCommand(cmd.Cmd):
            press enter an empty line
         '''
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
