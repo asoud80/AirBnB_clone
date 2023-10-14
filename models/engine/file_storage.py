@@ -24,13 +24,10 @@ class FileStorage():
             json.dump(instdic, fp)
 
     def reload(self):
-        # importing to match with classesin file
         from models.base_model import BaseModel
         reloaddic = {"BaseModel": BaseModel}
-        # check if file exists
         if os.path.exists(FileStorage.__file_path) is False:
             return
-	# open file and read JSON then convert it
         with open(FileStorage.__file_path, "r", encoding="utf-8") as fp:
             objs = json.load(fp)
             # clear existing objects
