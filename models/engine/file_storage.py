@@ -26,7 +26,12 @@ class FileStorage():
     def reload(self):
         from models.base_model import BaseModel
         from models.user import User
-        reloaddic = {"BaseModel": BaseModel, "User": User, "Sate": State,
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+        reloaddic = {"BaseModel": BaseModel, "User": User, "State": State,
                      "City": City, "Amenity": Amenity, "Place": Place,
                      "Review": Review}
         if os.path.exists(FileStorage.__file_path) is False:

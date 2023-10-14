@@ -126,7 +126,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
-<<<<<<< HEAD
         cmdPattern = r"^([A-Za-z]+)\.([a-z]+)\(([^(]*)\)"
         paramsPattern = r"""^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))(?:,\s*(?:("?[^"]+"?)))?)?"""
         m = re.match(cmdPattern, line)
@@ -136,10 +135,8 @@ class HBNBCommand(cmd.Cmd):
         mName, method, params = m.groups()
         m = re.match(paramsPattern, params)
         params = [item for item in m.groups() if item] if m else []
-=======
-            setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
-            models.storage.save()
->>>>>>> 84cc4d66677724b92ae176f6554e7bfbcd0ed7cc
+        setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
+        models.storage.save()
 
     def check_class_name(self, name=""):
         """Check if stdin user typed class name and id."""
