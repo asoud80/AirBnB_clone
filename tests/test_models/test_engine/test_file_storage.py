@@ -6,12 +6,14 @@ from models.engine.file_storage import FileStorage
 import os
 from models import storage
 
+
 class TestFileStorageClass(unittest.TestCase):
     def setUp(self):
         """ condition to test file saving """
         with open("test.json", 'w'):
             FileStorage._FileStorage__file_path = "test.json"
             FileStorage._FileStorage__objects = {}
+
     def tearDown(self):
         """ destroys created file """
         FileStorage._FileStorage__file_path = "file.json"
@@ -24,7 +26,7 @@ class TestFileStorageClass(unittest.TestCase):
         """ Test method all from filestorage """
         my_obj = FileStorage()
         my_dict = my_obj.all()
-        self.assertTrue(type(my_dict) == dict)
+        self.assertEqual(type(my_dict), dict)
 
     def test_new(self):
         """ Tests method new for filestorage """
