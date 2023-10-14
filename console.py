@@ -3,7 +3,7 @@
 """An interactive shell?"""
 
 import cmd
-import re
+# import re
 import models
 from models.base_model import BaseModel
 from models import storage
@@ -191,8 +191,8 @@ class HBNBCommand(cmd.Cmd):
         if line is None:
             return
 
-        cmdPattern = "^([A-Za-z]+)\.([a-z]+)\(([^(]*)\)"
-        paramsPattern = """^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))(?:,\s*(?:("?[^"]+"?)))?)?"""
+        cmdPattern = r"^([A-Za-z]+)\.([a-z]+)\(([^(]*)\)"
+        paramsPattern = r"""^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))(?:,\s*(?:("?[^"]+"?)))?)?"""
         m = re.match(cmdPattern, line)
         if not m:
             super().default(line)
