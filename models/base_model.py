@@ -7,12 +7,12 @@ from models import storage
 class BaseModel():
 
     def __init__(self, *args, **kwargs):
-        if kwargs is not None and len(kwargs) != 0:
-            newdic = kwargs
+        if kwargs:
+            frmt = "%Y-%m-%dT%H:%M:%S.%f"
+            newdic = kwargs.copy()
             del newdic["__class__"]
             for key in newdic:
                 if (key == "created_at" or key == "updated_at"):
-                    frmt = "%Y-%m-%dT%H:%M:%S.%f"
                     newdic[key] = datetime.strptime(newdic[key], frmt)
             self.__dict__ = newdic
         else:
@@ -30,7 +30,7 @@ class BaseModel():
         storage.save()
 
     def to_dict(self):
-        diccopy = self.__dict__
+        diccopy = self.__dict__.copy()
         diccopy["__class__"] = self.__class__.__name__
         diccopy["created_at"] = self.created_at.isoformat()
         diccopy["updated_at"] = self.updated_at.isoformat()
