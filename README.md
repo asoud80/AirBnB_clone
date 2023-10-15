@@ -15,7 +15,6 @@ The console will be a tool to validate this storage engine
 
 ## How to start
 
-### Installing & Running
 ```bash
 git clone https://github.com/asoud80/AirBnB_clone.git
 cd AirBnB_clone
