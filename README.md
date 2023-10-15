@@ -13,9 +13,9 @@ This abstraction will also allow you to change the type of storage easily withou
 The console will be a tool to validate this storage engine
 
 
-##How to start
+## How to start
 
-###Installing & Running
+### Installing & Running
 ```bash
 git clone https://github.com/asoud80/AirBnB_clone.git
 cd AirBnB_clone
