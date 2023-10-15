@@ -26,7 +26,7 @@ class TestBaseClass(unittest.TestCase):
             os.remove("test.json")
         except FileNotFoundError:
             pass
-    
+
     def test_isinstance(self):
         """ Check if object is basemodel instance """
         bm = BaseModel()

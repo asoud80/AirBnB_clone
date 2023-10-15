@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+"""Console module"""
 
 import cmd
+import re
 import shlex
 import models
 from datetime import datetime
@@ -15,6 +17,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """Command interpreter class"""
     prompt = '(hbnb) '
     __classes = [
         "Amenity",
@@ -139,8 +142,17 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
-            setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
-            models.storage.save()
+        cmdPattern = r"^([A-Za-z]+)\.([a-z]+)\(([^(]*)\)"
+        paramsPattern = r"""^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))(?:,\s*(?:("?[^"]+"?)))?)?"""
+        m = re.match(cmdPattern, line)
+        if not m:
+            super().default(line)
+            return
+        mName, method, params = m.groups()
+        m = re.match(paramsPattern, params)
+        params = [item for item in m.groups() if item] if m else []
+        setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
+        models.storage.save()
 
     def check_class_name(self, name=""):
         """Check if stdin user typed class name and id."""
@@ -183,6 +195,7 @@ class HBNBCommand(cmd.Cmd):
            press enter an empty line
         '''
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
